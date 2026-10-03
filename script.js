@@ -1,17 +1,19 @@
-const elements = document.querySelectorAll('.fade-in');
+const menuBtn = document.getElementById("menu-toggle");
+const navbar = document.getElementById("nav-links");
+const menuBtnIcon = menuBtn.querySelector("i");
 
-  window.addEventListener('scroll', () => {
-    elements.forEach(el => {
-      const top = el.getBoundingClientRect().top;
-      if (top < window.innerHeight - 100) {
-        el.classList.add('show');
-      }
-    });
+menuBtn.addEventListener("click", () => {
+  navbar.classList.toggle("active");
+
+  const isOpen = navbar.classList.contains("active");
+
+  menuBtnIcon.setAttribute(
+    "class",
+    isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"
+  );
 });
 
-const toggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav-links');
-
-toggle.addEventListener('click', () => {
-  nav.classList.toggle('active');
+navbar.addEventListener("click", () => {
+  navbar.classList.remove("active");
+  menuBtnIcon.setAttribute("class", "fa-solid fa-bars");
 });
